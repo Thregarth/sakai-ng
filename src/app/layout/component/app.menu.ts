@@ -21,6 +21,25 @@ export class AppMenu {
     ngOnInit() {
         this.model = [
             {
+                label: 'Administración',
+                items: [
+                    {
+                        label: 'Incidencias',
+                        items: [
+                            { label: 'Gestión Incidencias', icon: 'pi pi-fw pi-list', routerLink: ['/'] },
+                            { label: 'Avisos a proveedor', icon: 'pi pi-fw pi-mobile ', routerLink: ['/'] }
+                        ]
+                    }
+                ]
+            },
+            {
+                label: 'Incidencias',
+                items: [
+                    { label: 'Alta Incidencias', icon: 'pi pi-fw pi-book', routerLink: ['/'] },
+                    { label: 'Consulta Incidencias', icon: 'pi pi-fw pi-server', routerLink: ['/'] }
+                ]
+            },
+            {
                 label: 'Home',
                 items: [{ label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/'] }]
             },

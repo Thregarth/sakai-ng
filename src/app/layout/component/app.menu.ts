@@ -26,8 +26,8 @@ export class AppMenu {
                     {
                         label: 'Incidencias',
                         items: [
-                            { label: 'Gestión Incidencias', icon: 'pi pi-fw pi-list', routerLink: ['/'] },
-                            { label: 'Avisos a proveedor', icon: 'pi pi-fw pi-mobile ', routerLink: ['/'] }
+                            { label: 'Gestión Incidencias', icon: 'pi pi-fw pi-list', routerLink: ['/issues/management'] },
+                            { label: 'Avisos a proveedor', icon: 'pi pi-fw pi-mobile ', routerLink: ['/issues/vendor-alerts'] }
                         ]
                     }
                 ]
@@ -35,8 +35,8 @@ export class AppMenu {
             {
                 label: 'Incidencias',
                 items: [
-                    { label: 'Alta Incidencias', icon: 'pi pi-fw pi-book', routerLink: ['/'] },
-                    { label: 'Consulta Incidencias', icon: 'pi pi-fw pi-server', routerLink: ['/'] }
+                    { label: 'Alta Incidencias', icon: 'pi pi-fw pi-book', routerLink: ['/issues/new'] },
+                    { label: 'Consulta Incidencias', icon: 'pi pi-fw pi-server', routerLink: ['/issues/query'] }
                 ]
             },
             {

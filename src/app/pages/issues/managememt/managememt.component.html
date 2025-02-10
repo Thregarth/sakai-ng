@@ -1,9 +1,8 @@
 <div class="card h-full flex flex-col">
     <div class="font-semibold text-xl mb-4">Gestión de Incidencias</div>
-
-    <!-- Permitir scroll horizontal -->
+    
     <div class="flex-1 min-h-0 overflow-hidden">
-        <div class="overflow-x-auto w-full max-w-[calc(100vw-410px)]">
+        <div class="overflow-x-auto w-full max-w-[calc(100vw-430px)]">
             <p-table 
                 [value]="issues" 
                 [scrollable]="true" 
@@ -27,25 +26,57 @@
                 </ng-template>
 
                 <ng-template #body let-issue>
-                    <tr>
-                        <td>{{issue.idIncidencia}}</td>
+                    <tr>                     
+                        <td>
+                            <p-skeleton *ngIf="isLoading" height="1.15rem"></p-skeleton>
+                            {{issue.idIncidencia}}
+                        </td>
                         <td 
                             class="max-w-[320px] overflow-hidden whitespace-nowrap text-ellipsis cursor-pointer"
                             pTooltip="{{issue.descripcion}}" 
                             tooltipPosition="top" 
                             [tooltipEvent]="'hover'"
                             [showDelay]="1500">
+                            <p-skeleton *ngIf="isLoading" height="1.15rem"></p-skeleton>
                             {{issue.descripcion}}
                         </td>
-                        <td>{{issue.fechaIncidencia | date: 'dd-MM-yyyy HH:mm' }}</td>
-                        <td>{{issue.equipo}}</td>
-                        <td>{{issue.estado}}</td>
-                        <td>{{issue.usuarioAfectado}}</td>
-                        <td>{{issue.usuarioAsignado}}</td>
-                        <td>{{issue.nivel1}}</td>
-                        <td>{{issue.nivel2}}</td>
-                        <td class="max-w-[320px] overflow-hidden whitespace-nowrap text-ellipsis">{{issue.resolucionIncidencia}}</td>
-                        <td>{{issue.fecCierre | date: 'dd-MM-yyyy HH:mm' }}</td>
+                        
+                        <td>
+                            <p-skeleton *ngIf="isLoading" height="1.15rem"></p-skeleton>
+                            {{issue.fechaIncidencia | date: 'dd-MM-yyyy HH:mm' }}
+                        </td>
+                        <td>
+                            <p-skeleton *ngIf="isLoading" height="1.15rem"></p-skeleton>
+                            {{issue.equipo}}
+                        </td>
+                        <td>
+                            <p-skeleton *ngIf="isLoading" height="1.15rem"></p-skeleton>
+                            {{issue.estado}}
+                        </td>
+                        <td>
+                            <p-skeleton *ngIf="isLoading" height="1.15rem"></p-skeleton>
+                            {{issue.usuarioAfectado}}
+                        </td>
+                        <td>
+                            <p-skeleton *ngIf="isLoading" height="1.15rem"></p-skeleton>
+                            {{issue.usuarioAsignado}}
+                        </td>
+                        <td>
+                            <p-skeleton *ngIf="isLoading" height="1.15rem"></p-skeleton>
+                            {{issue.nivel1}}
+                        </td>
+                        <td>
+                            <p-skeleton *ngIf="isLoading" height="1.15rem"></p-skeleton>
+                            {{issue.nivel2}}
+                        </td>
+                        <td class="max-w-[320px] overflow-hidden whitespace-nowrap text-ellipsis">
+                            <p-skeleton *ngIf="isLoading" height="1.15rem"></p-skeleton>
+                            {{issue.resolucionIncidencia}}
+                        </td>
+                        <td>
+                            <p-skeleton *ngIf="isLoading" height="1.15rem"></p-skeleton>
+                            {{issue.fecCierre | date: 'dd-MM-yyyy HH:mm' }}
+                        </td>
                     </tr>
                 </ng-template>
             </p-table>

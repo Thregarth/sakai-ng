@@ -5,21 +5,24 @@ import { ManagementIssuesService } from '../../service/managementissues.service'
 import { GestionIncidenciaDto } from '../../dto/GestionIncidenciaDto';
 import { Result } from '../../dto/Result';
 import { TooltipModule } from 'primeng/tooltip';
-import { DatePipe } from '@angular/common';
-import { registerLocaleData } from '@angular/common';
+import { CommonModule, registerLocaleData} from '@angular/common';
 import localeEs from '@angular/common/locales/es'
+import { SkeletonModule } from 'primeng/skeleton';
+
 
 registerLocaleData(localeEs, 'es');
 
 @Component({
   selector: 'app-managememt',
-  imports: [TableModule, TooltipModule, DatePipe],
+  imports: [TableModule, TooltipModule,  SkeletonModule, CommonModule],
   templateUrl: './managememt.component.html',
   styleUrl: './managememt.component.scss',
   providers:[ManagementIssuesService,{ provide: LOCALE_ID, useValue: 'es' }]
 })
   export class ManagememtComponent implements OnInit {
-    issues: GestionIncidenciaDto[] = [];
+    // issues: GestionIncidenciaDto[] = [];
+    issues: GestionIncidenciaDto[] = Array.from({ length: 3 }, () => new GestionIncidenciaDto());
+    isLoading: boolean = false;
 
     constructor(private managementIssuesService: ManagementIssuesService) {}
 
@@ -28,8 +31,10 @@ registerLocaleData(localeEs, 'es');
     }
 
     getIssuesList() {
+      this.isLoading = true;
       const subscription = this.managementIssuesService.getIssuesList().subscribe((res: Result<GestionIncidenciaDto[]>) => {
         this.issues = res.data;
+        this.isLoading = false;
         subscription.unsubscribe();
       });
     }

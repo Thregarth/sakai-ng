@@ -1,6 +1,6 @@
-export interface GestionIncidenciaDto {
-    idIncidencia: number;
-    fechaIncidencia: Date;
+export class GestionIncidenciaDto {
+    idIncidencia?: number;
+    fechaIncidencia?: Date;
     equipo?: string;
     estado?: string;
     usuarioAfectado?: string;

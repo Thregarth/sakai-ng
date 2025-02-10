@@ -11,14 +11,16 @@ import { LayoutService } from '../service/layout.service';
     selector: 'app-layout',
     standalone: true,
     imports: [CommonModule, AppTopbar, AppSidebar, RouterModule, AppFooter],
-    template: `<div class="layout-wrapper" [ngClass]="containerClass">
+    template: `<div class="layout-wrapper h-screen flex flex-col" [ngClass]="containerClass">
         <app-topbar></app-topbar>
-        <app-sidebar></app-sidebar>
-        <div class="layout-main-container">
-            <div class="layout-main">
-                <router-outlet></router-outlet>
+        <div class="flex flex-1 min-h-0">
+            <app-sidebar></app-sidebar>
+            <div class="layout-main-container flex flex-col flex-1 min-h-0">
+                <div class="layout-main flex-1 min-h-0 overflow-auto">
+                    <router-outlet></router-outlet>
+                </div>
+                <app-footer></app-footer>
             </div>
-            <app-footer></app-footer>
         </div>
         <div class="layout-mask animate-fadein"></div>
     </div> `

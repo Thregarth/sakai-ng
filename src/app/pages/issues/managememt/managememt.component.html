@@ -1,1 +1,54 @@
-<p>managememt works!</p>
+<div class="card h-full flex flex-col">
+    <div class="font-semibold text-xl mb-4">Gestión de Incidencias</div>
+
+    <!-- Permitir scroll horizontal -->
+    <div class="flex-1 min-h-0 overflow-hidden">
+        <div class="overflow-x-auto w-full max-w-[calc(100vw-410px)]">
+            <p-table 
+                [value]="issues" 
+                [scrollable]="true" 
+                scrollHeight="calc(100vh - 250px)" 
+                [tableStyle]="{'min-width': '100rem'}">
+
+                <ng-template #header>
+                    <tr>
+                        <th class="min-w-[50px] sticky top-0 bg-white z-10">#</th>
+                        <th class="min-w-[420px] max-w-[320px] sticky top-0 bg-white z-10">Descripción</th>
+                        <th class="min-w-[220px] sticky top-0 bg-white z-10">Fecha</th>
+                        <th class="min-w-[220px] sticky top-0 bg-white z-10">Equipo Afectado</th>
+                        <th class="min-w-[220px] sticky top-0 bg-white z-10">Estado</th>
+                        <th class="min-w-[220px] sticky top-0 bg-white z-10">Usuario Afectado</th>
+                        <th class="min-w-[220px] sticky top-0 bg-white z-10">Usuario Asignado</th>
+                        <th class="min-w-[220px] sticky top-0 bg-white z-10">Nivel1</th>
+                        <th class="min-w-[220px] sticky top-0 bg-white z-10">Nivel2</th>
+                        <th class="min-w-[220px] sticky top-0 bg-white z-10">Resolución</th>
+                        <th class="min-w-[220px] sticky top-0 bg-white z-10">Fecha Cierre</th>
+                    </tr>
+                </ng-template>
+
+                <ng-template #body let-issue>
+                    <tr>
+                        <td>{{issue.idIncidencia}}</td>
+                        <td 
+                            class="max-w-[320px] overflow-hidden whitespace-nowrap text-ellipsis cursor-pointer"
+                            pTooltip="{{issue.descripcion}}" 
+                            tooltipPosition="top" 
+                            [tooltipEvent]="'hover'"
+                            [showDelay]="1500">
+                            {{issue.descripcion}}
+                        </td>
+                        <td>{{issue.fechaIncidencia | date: 'dd-MM-yyyy HH:mm' }}</td>
+                        <td>{{issue.equipo}}</td>
+                        <td>{{issue.estado}}</td>
+                        <td>{{issue.usuarioAfectado}}</td>
+                        <td>{{issue.usuarioAsignado}}</td>
+                        <td>{{issue.nivel1}}</td>
+                        <td>{{issue.nivel2}}</td>
+                        <td class="max-w-[320px] overflow-hidden whitespace-nowrap text-ellipsis">{{issue.resolucionIncidencia}}</td>
+                        <td>{{issue.fecCierre | date: 'dd-MM-yyyy HH:mm' }}</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</div> 

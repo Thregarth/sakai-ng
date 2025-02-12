@@ -10,7 +10,7 @@ import { LayoutService } from '../service/layout.service';
 @Component({
     selector: 'app-layout',
     standalone: true,
-    imports: [CommonModule, AppTopbar, AppSidebar, RouterModule, AppFooter],
+    imports: [CommonModule, AppTopbar, AppSidebar, RouterModule],
     template: `<div class="layout-wrapper h-screen flex flex-col" [ngClass]="containerClass">
         <app-topbar></app-topbar>
         <div class="flex flex-1 min-h-0">
@@ -19,7 +19,7 @@ import { LayoutService } from '../service/layout.service';
                 <div class="layout-main flex-1 min-h-0 overflow-auto">
                     <router-outlet></router-outlet>
                 </div>
-                <app-footer></app-footer>
+                <!--<app-footer></app-footer>-->
             </div>
         </div>
         <div class="layout-mask animate-fadein"></div>

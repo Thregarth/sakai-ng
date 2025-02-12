@@ -1,85 +1,88 @@
-<div class="card h-full flex flex-col">
+<div class="card h-full flex flex-col transition-all duration-300">
     <div class="font-semibold text-xl mb-4">Gestión de Incidencias</div>
     
-    <div class="flex-1 min-h-0 overflow-hidden">
-        <div class="overflow-x-auto w-full max-w-[calc(100vw-430px)]">
-            <p-table 
-                [value]="issues" 
-                [scrollable]="true" 
-                scrollHeight="calc(100vh - 250px)" 
-                [tableStyle]="{'min-width': '100rem'}">
+    <div class="flex-grow overflow-hidden">
+        <div class="relative w-full h-full">
+            <div class="overflow-hidden"
+                 [style.maxWidth]="maxWidth()">
+                <p-table 
+                    [value]="issues" 
+                    [scrollable]="true" 
+                    scrollHeight="calc(100vh - 206px)" 
+                    [tableStyle]="{'min-width': '100rem'}">
 
-                <ng-template #header>
-                    <tr>
-                        <th class="min-w-[50px] sticky top-0 bg-white z-10">#</th>
-                        <th class="min-w-[420px] max-w-[320px] sticky top-0 bg-white z-10">Descripción</th>
-                        <th class="min-w-[220px] sticky top-0 bg-white z-10">Fecha</th>
-                        <th class="min-w-[220px] sticky top-0 bg-white z-10">Equipo Afectado</th>
-                        <th class="min-w-[220px] sticky top-0 bg-white z-10">Estado</th>
-                        <th class="min-w-[220px] sticky top-0 bg-white z-10">Usuario Afectado</th>
-                        <th class="min-w-[220px] sticky top-0 bg-white z-10">Usuario Asignado</th>
-                        <th class="min-w-[220px] sticky top-0 bg-white z-10">Nivel1</th>
-                        <th class="min-w-[220px] sticky top-0 bg-white z-10">Nivel2</th>
-                        <th class="min-w-[220px] sticky top-0 bg-white z-10">Resolución</th>
-                        <th class="min-w-[220px] sticky top-0 bg-white z-10">Fecha Cierre</th>
-                    </tr>
-                </ng-template>
+                    <ng-template #header>
+                        <tr>
+                        <th class="min-w-[50px] sticky top-0 bg-white z-10 shadow-md">#</th>
+                        <th class="min-w-[420px] max-w-[320px] sticky top-0 bg-white z-10 shadow-md">Descripción</th>
+                        <th class="min-w-[220px] sticky top-0 bg-white z-10 shadow-md">Fecha</th>
+                        <th class="min-w-[220px] sticky top-0 bg-white z-10 shadow-md">Equipo Afectado</th>
+                        <th class="min-w-[220px] sticky top-0 bg-white z-10 shadow-md">Estado</th>
+                        <th class="min-w-[220px] sticky top-0 bg-white z-10 shadow-md">Usuario Afectado</th>
+                        <th class="min-w-[220px] sticky top-0 bg-white z-10 shadow-md">Usuario Asignado</th>
+                        <th class="min-w-[220px] sticky top-0 bg-white z-10 shadow-md">Nivel1</th>
+                        <th class="min-w-[220px] sticky top-0 bg-white z-10 shadow-md">Nivel2</th>
+                        <th class="min-w-[220px] sticky top-0 bg-white z-10 shadow-md">Resolución</th>
+                        <th class="min-w-[220px] sticky top-0 bg-white z-10 shadow-md">Fecha Cierre</th>
+                        </tr>
+                    </ng-template>
 
-                <ng-template #body let-issue>
-                    <tr>                     
-                        <td>
-                            <p-skeleton *ngIf="isLoading" height="1.15rem"></p-skeleton>
-                            {{issue.idIncidencia}}
-                        </td>
-                        <td 
-                            class="max-w-[320px] overflow-hidden whitespace-nowrap text-ellipsis cursor-pointer"
-                            pTooltip="{{issue.descripcion}}" 
-                            tooltipPosition="top" 
-                            [tooltipEvent]="'hover'"
-                            [showDelay]="1500">
-                            <p-skeleton *ngIf="isLoading" height="1.15rem"></p-skeleton>
-                            {{issue.descripcion}}
-                        </td>
-                        
-                        <td>
-                            <p-skeleton *ngIf="isLoading" height="1.15rem"></p-skeleton>
-                            {{issue.fechaIncidencia | date: 'dd-MM-yyyy HH:mm' }}
-                        </td>
-                        <td>
-                            <p-skeleton *ngIf="isLoading" height="1.15rem"></p-skeleton>
-                            {{issue.equipo}}
-                        </td>
-                        <td>
-                            <p-skeleton *ngIf="isLoading" height="1.15rem"></p-skeleton>
-                            {{issue.estado}}
-                        </td>
-                        <td>
-                            <p-skeleton *ngIf="isLoading" height="1.15rem"></p-skeleton>
-                            {{issue.usuarioAfectado}}
-                        </td>
-                        <td>
-                            <p-skeleton *ngIf="isLoading" height="1.15rem"></p-skeleton>
-                            {{issue.usuarioAsignado}}
-                        </td>
-                        <td>
-                            <p-skeleton *ngIf="isLoading" height="1.15rem"></p-skeleton>
-                            {{issue.nivel1}}
-                        </td>
-                        <td>
-                            <p-skeleton *ngIf="isLoading" height="1.15rem"></p-skeleton>
-                            {{issue.nivel2}}
-                        </td>
-                        <td class="max-w-[320px] overflow-hidden whitespace-nowrap text-ellipsis">
-                            <p-skeleton *ngIf="isLoading" height="1.15rem"></p-skeleton>
-                            {{issue.resolucionIncidencia}}
-                        </td>
-                        <td>
-                            <p-skeleton *ngIf="isLoading" height="1.15rem"></p-skeleton>
-                            {{issue.fecCierre | date: 'dd-MM-yyyy HH:mm' }}
-                        </td>
-                    </tr>
-                </ng-template>
-            </p-table>
-        </div>
+                    <ng-template #body let-issue>
+                        <tr>                     
+                            <td>
+                                <p-skeleton *ngIf="isLoading" height="1.15rem"></p-skeleton>
+                                {{issue.idIncidencia}}
+                            </td>
+                            <td 
+                                class="max-w-[320px] overflow-hidden whitespace-nowrap text-ellipsis cursor-pointer"
+                                pTooltip="{{issue.descripcion}}" 
+                                tooltipPosition="top" 
+                                [tooltipEvent]="'hover'"
+                                [showDelay]="1500">
+                                <p-skeleton *ngIf="isLoading" height="1.15rem"></p-skeleton>
+                                {{issue.descripcion}}
+                            </td>
+                            
+                            <td>
+                                <p-skeleton *ngIf="isLoading" height="1.15rem"></p-skeleton>
+                                {{issue.fechaIncidencia | date: 'dd-MM-yyyy HH:mm' }}
+                            </td>
+                            <td>
+                                <p-skeleton *ngIf="isLoading" height="1.15rem"></p-skeleton>
+                                {{issue.equipo}}
+                            </td>
+                            <td>
+                                <p-skeleton *ngIf="isLoading" height="1.15rem"></p-skeleton>
+                                {{issue.estado}}
+                            </td>
+                            <td>
+                                <p-skeleton *ngIf="isLoading" height="1.15rem"></p-skeleton>
+                                {{issue.usuarioAfectado}}
+                            </td>
+                            <td>
+                                <p-skeleton *ngIf="isLoading" height="1.15rem"></p-skeleton>
+                                {{issue.usuarioAsignado}}
+                            </td>
+                            <td>
+                                <p-skeleton *ngIf="isLoading" height="1.15rem"></p-skeleton>
+                                {{issue.nivel1}}
+                            </td>
+                            <td>
+                                <p-skeleton *ngIf="isLoading" height="1.15rem"></p-skeleton>
+                                {{issue.nivel2}}
+                            </td>
+                            <td class="max-w-[320px] overflow-hidden whitespace-nowrap text-ellipsis">
+                                <p-skeleton *ngIf="isLoading" height="1.15rem"></p-skeleton>
+                                {{issue.resolucionIncidencia}}
+                            </td>
+                            <td>
+                                <p-skeleton *ngIf="isLoading" height="1.15rem"></p-skeleton>
+                                {{issue.fecCierre | date: 'dd-MM-yyyy HH:mm' }}
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+    </div>
     </div>
 </div> 

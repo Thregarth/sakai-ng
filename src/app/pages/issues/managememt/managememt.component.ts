@@ -1,4 +1,4 @@
-import { Component, LOCALE_ID, } from '@angular/core';
+import { Component, LOCALE_ID, computed, signal } from '@angular/core';
 import { TableModule } from 'primeng/table';
 import { OnInit } from '@angular/core';
 import { ManagementIssuesService } from '../../service/managementissues.service';
@@ -8,6 +8,7 @@ import { TooltipModule } from 'primeng/tooltip';
 import { CommonModule, registerLocaleData} from '@angular/common';
 import localeEs from '@angular/common/locales/es'
 import { SkeletonModule } from 'primeng/skeleton';
+import { LayoutService } from '../../../layout/service/layout.service';
 
 
 registerLocaleData(localeEs, 'es');
@@ -20,11 +21,18 @@ registerLocaleData(localeEs, 'es');
   providers:[ManagementIssuesService,{ provide: LOCALE_ID, useValue: 'es' }]
 })
   export class ManagememtComponent implements OnInit {
+
     // issues: GestionIncidenciaDto[] = [];
     issues: GestionIncidenciaDto[] = Array.from({ length: 3 }, () => new GestionIncidenciaDto());
     isLoading: boolean = false;
 
-    constructor(private managementIssuesService: ManagementIssuesService) {}
+    maxWidth = computed(() => {
+      return this.layoutService.layoutState().staticMenuDesktopInactive
+        ? 'calc(100vw - 115px)'  // Si el menú está colapsado
+        : 'calc(100vw - 420px)'; // Si el menú está expandido
+    });
+
+    constructor(private managementIssuesService: ManagementIssuesService, private layoutService: LayoutService) {}
 
     ngOnInit() {
       this.getIssuesList();
@@ -37,6 +45,10 @@ registerLocaleData(localeEs, 'es');
         this.isLoading = false;
         subscription.unsubscribe();
       });
+    }
+
+    getMaxWidth(): string {
+      return this.layoutService.isOverlay() ? 'calc(100vw - 100px)' : 'calc(100vw - 420px)';
     }
   }
 

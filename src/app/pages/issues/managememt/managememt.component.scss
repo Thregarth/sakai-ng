@@ -1,15 +1,15 @@
-th.sticky {
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-.layout-main {
-    overflow: hidden !important; /* Evita que el contenedor principal cree un scroll extra */
-}
+// th.sticky {
+//     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+// }
+// .layout-main {
+//     overflow: hidden !important; /* Evita que el contenedor principal cree un scroll extra */
+// }
 
-.p-datatable-wrapper {
-    overflow-x: auto; /* Mantiene el scroll horizontal si es necesario */
-    overflow-y: hidden; /* Evita scroll innecesario en Y */
-}
+// .p-datatable-wrapper {
+//     overflow-x: auto; /* Mantiene el scroll horizontal si es necesario */
+//     overflow-y: hidden; /* Evita scroll innecesario en Y */
+// }
 
-.p-datatable-scrollable-body {
-    overflow-y: auto !important; /* Solo el cuerpo de la tabla puede hacer scroll */
-}
+// .p-datatable-table-container{
+//   max-width: (calc(100vw - 450px)) !important;
+// }

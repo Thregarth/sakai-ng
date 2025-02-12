@@ -1,85 +1,54 @@
-<div class="card h-full flex flex-col">
-    <div class="font-semibold text-xl mb-4">Gestión de Incidencias</div>
-    
-    <div class="flex-1 min-h-0 overflow-hidden">
-        <div class="overflow-x-auto w-full max-w-[calc(100vw-430px)]">
-            <p-table 
-                [value]="issues" 
-                [scrollable]="true" 
-                scrollHeight="calc(100vh - 250px)" 
-                [tableStyle]="{'min-width': '100rem'}">
+<div class="content-wrapper flex flex-col flex-grow overflow-hidden shadow-lg bg-white rounded-lg">
+    <!-- Encabezado de la Sección -->
+    <div class="p-4 border-b border-gray-200">
+        <h2 class="text-xl font-semibold">Gestión de Incidencias</h2>
+    </div>
 
-                <ng-template #header>
-                    <tr>
-                        <th class="min-w-[50px] sticky top-0 bg-white z-10">#</th>
-                        <th class="min-w-[420px] max-w-[320px] sticky top-0 bg-white z-10">Descripción</th>
-                        <th class="min-w-[220px] sticky top-0 bg-white z-10">Fecha</th>
-                        <th class="min-w-[220px] sticky top-0 bg-white z-10">Equipo Afectado</th>
-                        <th class="min-w-[220px] sticky top-0 bg-white z-10">Estado</th>
-                        <th class="min-w-[220px] sticky top-0 bg-white z-10">Usuario Afectado</th>
-                        <th class="min-w-[220px] sticky top-0 bg-white z-10">Usuario Asignado</th>
-                        <th class="min-w-[220px] sticky top-0 bg-white z-10">Nivel1</th>
-                        <th class="min-w-[220px] sticky top-0 bg-white z-10">Nivel2</th>
-                        <th class="min-w-[220px] sticky top-0 bg-white z-10">Resolución</th>
-                        <th class="min-w-[220px] sticky top-0 bg-white z-10">Fecha Cierre</th>
-                    </tr>
-                </ng-template>
+    <!-- Contenedor de la Tabla -->
+    <div class="flex-grow overflow-hidden">
+        <div class="relative w-full h-full">
+            <div class="overflow-hidden max-h-[calc(100vh-150px)]">
+                <p-table 
+                    [responsive]="true"
+                    [value]="issues" 
+                    [scrollable]="true"
+                    scrollHeight="calc(100vh-150px)"
+                    [tableStyle]="{'min-width': '100rem'}">
 
-                <ng-template #body let-issue>
-                    <tr>                     
-                        <td>
-                            <p-skeleton *ngIf="isLoading" height="1.15rem"></p-skeleton>
-                            {{issue.idIncidencia}}
-                        </td>
-                        <td 
-                            class="max-w-[320px] overflow-hidden whitespace-nowrap text-ellipsis cursor-pointer"
-                            pTooltip="{{issue.descripcion}}" 
-                            tooltipPosition="top" 
-                            [tooltipEvent]="'hover'"
-                            [showDelay]="1500">
-                            <p-skeleton *ngIf="isLoading" height="1.15rem"></p-skeleton>
-                            {{issue.descripcion}}
-                        </td>
-                        
-                        <td>
-                            <p-skeleton *ngIf="isLoading" height="1.15rem"></p-skeleton>
-                            {{issue.fechaIncidencia | date: 'dd-MM-yyyy HH:mm' }}
-                        </td>
-                        <td>
-                            <p-skeleton *ngIf="isLoading" height="1.15rem"></p-skeleton>
-                            {{issue.equipo}}
-                        </td>
-                        <td>
-                            <p-skeleton *ngIf="isLoading" height="1.15rem"></p-skeleton>
-                            {{issue.estado}}
-                        </td>
-                        <td>
-                            <p-skeleton *ngIf="isLoading" height="1.15rem"></p-skeleton>
-                            {{issue.usuarioAfectado}}
-                        </td>
-                        <td>
-                            <p-skeleton *ngIf="isLoading" height="1.15rem"></p-skeleton>
-                            {{issue.usuarioAsignado}}
-                        </td>
-                        <td>
-                            <p-skeleton *ngIf="isLoading" height="1.15rem"></p-skeleton>
-                            {{issue.nivel1}}
-                        </td>
-                        <td>
-                            <p-skeleton *ngIf="isLoading" height="1.15rem"></p-skeleton>
-                            {{issue.nivel2}}
-                        </td>
-                        <td class="max-w-[320px] overflow-hidden whitespace-nowrap text-ellipsis">
-                            <p-skeleton *ngIf="isLoading" height="1.15rem"></p-skeleton>
-                            {{issue.resolucionIncidencia}}
-                        </td>
-                        <td>
-                            <p-skeleton *ngIf="isLoading" height="1.15rem"></p-skeleton>
-                            {{issue.fecCierre | date: 'dd-MM-yyyy HH:mm' }}
-                        </td>
-                    </tr>
-                </ng-template>
-            </p-table>
+                    <ng-template pTemplate="header">
+                        <tr class="sticky top-0 bg-white shadow-md z-10">
+                            <th class="px-4 py-2 border-b border-gray-200">#</th>
+                            <th class="px-4 py-2 border-b border-gray-200">Descripción</th>
+                            <th class="px-4 py-2 border-b border-gray-200">Fecha</th>
+                            <th class="px-4 py-2 border-b border-gray-200">Equipo Afectado</th>
+                            <th class="px-4 py-2 border-b border-gray-200">Estado</th>
+                            <th class="px-4 py-2 border-b border-gray-200">Usuario Afectado</th>
+                            <th class="px-4 py-2 border-b border-gray-200">Usuario Asignado</th>
+                            <th class="px-4 py-2 border-b border-gray-200">Nivel1</th>
+                            <th class="px-4 py-2 border-b border-gray-200">Nivel2</th>
+                            <th class="px-4 py-2 border-b border-gray-200">Resolución</th>
+                            <th class="px-4 py-2 border-b border-gray-200">Fecha Cierre</th>
+                        </tr>
+                    </ng-template>
+                    
+
+                    <ng-template pTemplate="body" let-issue>
+                        <tr>
+                            <td>{{issue.idIncidencia}}</td>
+                            <td pTooltip="{{issue.descripcion}}" tooltipPosition="top">{{issue.descripcion}}</td>
+                            <td>{{issue.fechaIncidencia | date: 'dd-MM-yyyy HH:mm' }}</td>
+                            <td>{{issue.equipo}}</td>
+                            <td>{{issue.estado}}</td>
+                            <td>{{issue.usuarioAfectado}}</td>
+                            <td>{{issue.usuarioAsignado}}</td>
+                            <td>{{issue.nivel1}}</td>
+                            <td>{{issue.nivel2}}</td>
+                            <td>{{issue.resolucionIncidencia}}</td>
+                            <td>{{issue.fecCierre | date: 'dd-MM-yyyy HH:mm' }}</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
         </div>
     </div>
-</div> 
+</div>

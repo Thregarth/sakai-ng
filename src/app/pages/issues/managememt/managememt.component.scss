@@ -1,15 +1,25 @@
-th.sticky {
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-.layout-main {
-    overflow: hidden !important; /* Evita que el contenedor principal cree un scroll extra */
+.content-wrapper {
+  height: calc(100vh - 115px); /* Ajuste dinámico */
 }
 
-.p-datatable-wrapper {
-    overflow-x: auto; /* Mantiene el scroll horizontal si es necesario */
-    overflow-y: hidden; /* Evita scroll innecesario en Y */
+::ng-deep .p-datatable-scrollable-header {
+  position: sticky !important;
+  top: 0;
+  z-index: 10;
+  background: white;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.p-datatable-scrollable-body {
-    overflow-y: auto !important; /* Solo el cuerpo de la tabla puede hacer scroll */
+
+.p-table {
+  min-width: 100%;
+}
+
+/* Contenedor de la tabla para manejar el scroll */
+// .overflow-auto {
+//   overflow-x: auto; /* Asegura que el scroll horizontal solo aparezca en la tabla */
+//   max-height: calc(100vh - 150px); /* Ajusta la altura de la tabla sin que la `card` tenga scroll */
+// }
+.p-datatable-tbody {
+  overflow-y: auto !important; /* Solo el cuerpo de la tabla puede hacer scroll */
 }

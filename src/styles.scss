@@ -3,3 +3,11 @@
 @use './assets/layout/layout.scss';
 @use 'primeicons/primeicons.css';
 @use './assets/demo/demo.scss';
+
+
+  
+  html, body {
+    overflow: hidden; /* Elimina el scroll del body */
+    height: 100%;
+  }
+  

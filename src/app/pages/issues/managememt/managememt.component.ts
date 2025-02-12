@@ -8,13 +8,14 @@ import { TooltipModule } from 'primeng/tooltip';
 import { CommonModule, registerLocaleData} from '@angular/common';
 import localeEs from '@angular/common/locales/es'
 import { SkeletonModule } from 'primeng/skeleton';
+import { CardModule } from 'primeng/card';
 
 
 registerLocaleData(localeEs, 'es');
 
 @Component({
   selector: 'app-managememt',
-  imports: [TableModule, TooltipModule,  SkeletonModule, CommonModule],
+  imports: [TableModule, TooltipModule,  SkeletonModule, CommonModule, CardModule],
   templateUrl: './managememt.component.html',
   styleUrl: './managememt.component.scss',
   providers:[ManagementIssuesService,{ provide: LOCALE_ID, useValue: 'es' }]

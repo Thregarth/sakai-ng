@@ -5,11 +5,11 @@
         <div class="relative w-full h-full">
             <div class="overflow-hidden"
                  [style.maxWidth]="maxWidth()">
-                <p-table #dt
+                <p-table #dt [columns]="cols"
                     [virtualScroll]="true" [virtualScrollItemSize]="30" [rows]="100" [exportHeader]="'customExportHeader'" [exportFilename]="'incidencias'"
                     [value]="issues" 
                     [scrollable]="true" 
-                    scrollHeight="calc(100vh - 206px)" 
+                    scrollHeight="calc(100vh - 276px)" 
                     [tableStyle]="{'min-width': '100rem'}">
                     <ng-template #caption>
                         <div class="text-end pb-4">

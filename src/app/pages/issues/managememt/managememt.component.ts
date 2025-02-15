@@ -29,7 +29,19 @@ registerLocaleData(localeEs, 'es');
     // issues: GestionIncidenciaDto[] = [];
     issues: GestionIncidenciaDto[] = Array.from({ length: 3 }, () => new GestionIncidenciaDto());
     isLoading: boolean = false;
-    isFrozen: boolean = true;
+    cols = [
+      { field: 'idIncidencia', header: 'ID Incidencia', customExportHeader: 'Incidencia ID' },
+      { field: 'fechaIncidencia', header: 'Fecha Incidencia', customExportHeader: 'Fecha' },
+      { field: 'equipo', header: 'Equipo' },
+      { field: 'estado', header: 'Estado' },
+      { field: 'usuarioAfectado', header: 'Usuario Afectado', customExportHeader: 'Afectado' },
+      { field: 'usuarioAsignado', header: 'Usuario Asignado', customExportHeader: 'Asignado' },
+      { field: 'nivel1', header: 'Nivel 1' },
+      { field: 'nivel2', header: 'Nivel 2' },
+      { field: 'descripcion', header: 'Descripción' },
+      { field: 'resolucionIncidencia', header: 'Resolución', customExportHeader: 'Resolución Final' },
+      { field: 'fecCierre', header: 'Fecha Cierre' },
+    ];
 
     maxWidth = computed(() => {
       return this.layoutService.layoutState().staticMenuDesktopInactive

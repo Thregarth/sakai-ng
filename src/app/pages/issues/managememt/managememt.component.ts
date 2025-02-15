@@ -1,5 +1,5 @@
-import { Component, LOCALE_ID, computed, signal } from '@angular/core';
-import { TableModule } from 'primeng/table';
+import { Component, LOCALE_ID, ViewChild, computed, signal } from '@angular/core';
+import { Table, TableModule } from 'primeng/table';
 import { OnInit } from '@angular/core';
 import { ManagementIssuesService } from '../../service/managementissues.service';
 import { GestionIncidenciaDto } from '../../dto/GestionIncidenciaDto';
@@ -9,22 +9,27 @@ import { CommonModule, registerLocaleData} from '@angular/common';
 import localeEs from '@angular/common/locales/es'
 import { SkeletonModule } from 'primeng/skeleton';
 import { LayoutService } from '../../../layout/service/layout.service';
+import { PagedEnumerable } from '../../dto/PagedEnumerable';
+import { ButtonModule } from 'primeng/button';
 
 
 registerLocaleData(localeEs, 'es');
 
 @Component({
   selector: 'app-managememt',
-  imports: [TableModule, TooltipModule,  SkeletonModule, CommonModule],
+  imports: [TableModule, TooltipModule,  SkeletonModule, CommonModule, ButtonModule],
   templateUrl: './managememt.component.html',
   styleUrl: './managememt.component.scss',
   providers:[ManagementIssuesService,{ provide: LOCALE_ID, useValue: 'es' }]
 })
   export class ManagememtComponent implements OnInit {
 
+    @ViewChild('dt') dt!: Table;
+
     // issues: GestionIncidenciaDto[] = [];
     issues: GestionIncidenciaDto[] = Array.from({ length: 3 }, () => new GestionIncidenciaDto());
     isLoading: boolean = false;
+    isFrozen: boolean = true;
 
     maxWidth = computed(() => {
       return this.layoutService.layoutState().staticMenuDesktopInactive
@@ -40,8 +45,8 @@ registerLocaleData(localeEs, 'es');
 
     getIssuesList() {
       this.isLoading = true;
-      const subscription = this.managementIssuesService.getIssuesList().subscribe((res: Result<GestionIncidenciaDto[]>) => {
-        this.issues = res.data;
+      const subscription = this.managementIssuesService.getIssuesList().subscribe((res: Result<PagedEnumerable<GestionIncidenciaDto[]>>) => {
+        this.issues = res.data.items;
         this.isLoading = false;
         subscription.unsubscribe();
       });
@@ -50,5 +55,12 @@ registerLocaleData(localeEs, 'es');
     getMaxWidth(): string {
       return this.layoutService.isOverlay() ? 'calc(100vw - 100px)' : 'calc(100vw - 420px)';
     }
+    exportCSV(){
+    if(this.dt){
+      this.dt.exportCSV({selectionOnly: false , allValues: true});
+    } else {
+      console.log("No se ha podido exportar el archivo CSV");
+    }
   }
+}
 

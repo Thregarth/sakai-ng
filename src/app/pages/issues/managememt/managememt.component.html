@@ -5,25 +5,39 @@
         <div class="relative w-full h-full">
             <div class="overflow-hidden"
                  [style.maxWidth]="maxWidth()">
-                <p-table 
+                <p-table #dt
+                    [virtualScroll]="true" [virtualScrollItemSize]="30" [rows]="100" [exportHeader]="'customExportHeader'" [exportFilename]="'incidencias'"
                     [value]="issues" 
                     [scrollable]="true" 
                     scrollHeight="calc(100vh - 206px)" 
                     [tableStyle]="{'min-width': '100rem'}">
-
+                    <ng-template #caption>
+                        <div class="text-end pb-4">
+                            <p-button icon="pi pi-external-link" label="Export" (click)="dt.exportCSV()" />
+                        </div>
+                    </ng-template>
                     <ng-template #header>
                         <tr>
-                        <th class="min-w-[50px] sticky top-0 bg-white z-10 shadow-md">#</th>
-                        <th class="min-w-[420px] max-w-[320px] sticky top-0 bg-white z-10 shadow-md">Descripción</th>
-                        <th class="min-w-[220px] sticky top-0 bg-white z-10 shadow-md">Fecha</th>
-                        <th class="min-w-[220px] sticky top-0 bg-white z-10 shadow-md">Equipo Afectado</th>
-                        <th class="min-w-[220px] sticky top-0 bg-white z-10 shadow-md">Estado</th>
-                        <th class="min-w-[220px] sticky top-0 bg-white z-10 shadow-md">Usuario Afectado</th>
-                        <th class="min-w-[220px] sticky top-0 bg-white z-10 shadow-md">Usuario Asignado</th>
-                        <th class="min-w-[220px] sticky top-0 bg-white z-10 shadow-md">Nivel1</th>
-                        <th class="min-w-[220px] sticky top-0 bg-white z-10 shadow-md">Nivel2</th>
-                        <th class="min-w-[220px] sticky top-0 bg-white z-10 shadow-md">Resolución</th>
-                        <th class="min-w-[220px] sticky top-0 bg-white z-10 shadow-md">Fecha Cierre</th>
+                            <th class="min-w-[80px]  top-0 bg-white z-10 shadow-md">
+                                <p-columnFilter type="numeric" field="idIncidencia" display="menu" />
+                                #
+                            </th>
+                            <th class="min-w-[420px] top-0 bg-white z-10 shadow-md">
+                                <p-columnFilter type="text" field="descripcion" display="menu" />
+                                Descripción
+                            </th>
+                            <th class="min-w-[220px] top-0 bg-white z-10 shadow-md">
+                                <p-columnFilter type="date" field="fechaIncidencia" display="menu" />
+                                Fecha
+                            </th>
+                            <th class="min-w-[220px] top-0 bg-white z-10 shadow-md">Equipo Afectado</th>
+                            <th class="min-w-[220px] top-0 bg-white z-10 shadow-md">Estado</th>
+                            <th class="min-w-[220px] top-0 bg-white z-10 shadow-md">Usuario Afectado</th>
+                            <th class="min-w-[220px] top-0 bg-white z-10 shadow-md">Usuario Asignado</th>
+                            <th class="min-w-[220px] top-0 bg-white z-10 shadow-md">Nivel1</th>
+                            <th class="min-w-[220px] top-0 bg-white z-10 shadow-md">Nivel2</th>
+                            <th class="min-w-[220px] top-0 bg-white z-10 shadow-md">Resolución</th>
+                            <th class="min-w-[220px] top-0 bg-white z-10 shadow-md">Fecha Cierre</th>
                         </tr>
                     </ng-template>
 

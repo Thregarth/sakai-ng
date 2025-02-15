@@ -5,15 +5,16 @@
         <div class="relative w-full h-full">
             <div class="overflow-hidden"
                  [style.maxWidth]="maxWidth()">
-                <p-table #dt [columns]="cols"
-                    [virtualScroll]="true" [virtualScrollItemSize]="30" [rows]="100" [exportHeader]="'customExportHeader'" [exportFilename]="'incidencias'"
+                <p-table #dt 
+                    [virtualScroll]="true" [virtualScrollItemSize]="30" [rows]="100" 
                     [value]="issues" 
                     [scrollable]="true" 
                     scrollHeight="calc(100vh - 276px)" 
                     [tableStyle]="{'min-width': '100rem'}">
                     <ng-template #caption>
                         <div class="text-end pb-4">
-                            <p-button icon="pi pi-external-link" label="Export" (click)="dt.exportCSV()" />
+                            <!-- <p-button icon="pi pi-external-link" label="Export" (click)="dt.exportCSV()" /> -->
+                            <p-button icon="cursor-pointer pi-file-excel" label="Excel" (click)="exportExcel()" />
                         </div>
                     </ng-template>
                     <ng-template #header>

@@ -1,5 +1,16 @@
 <div class="card">
-    <p-table #dt [columns]="cols" [value]="products" selectionMode="multiple" [(selection)]="selectedProducts" [exportHeader]="'customExportHeader'" [tableStyle]="{ 'min-width': '50rem' }">
+    <p-table #dt 
+        [virtualScroll]="true" 
+        [virtualScrollItemSize]="30" 
+        [rows]="100" 
+        [columns]="cols" 
+        [value]="products" 
+        [scrollable]="true" 
+        selectionMode="multiple" 
+        [(selection)]="selectedProducts"
+        [exportHeader]="'customExportHeader'" 
+        [tableStyle]="{ 'min-width': '50rem' }" 
+        scrollHeight="calc(100vh - 240px)" >
         <ng-template #caption>
             <div class="text-end pb-4">
                 <p-button icon="pi pi-external-link" label="Export" (click)="dt.exportCSV()" />
@@ -30,21 +41,17 @@
             </tr>
         </ng-template>
         <ng-template #body let-issue>
-            <tr>                     
+            <tr>
                 <td>
                     <p-skeleton *ngIf="isLoading" height="1.15rem"></p-skeleton>
                     {{issue.idIncidencia}}
                 </td>
-                <td 
-                    class="max-w-[320px] overflow-hidden whitespace-nowrap text-ellipsis cursor-pointer"
-                    pTooltip="{{issue.descripcion}}" 
-                    tooltipPosition="top" 
-                    [tooltipEvent]="'hover'"
-                    [showDelay]="1500">
+                <td class="max-w-[320px] overflow-hidden whitespace-nowrap text-ellipsis cursor-pointer"
+                    pTooltip="{{issue.descripcion}}" tooltipPosition="top" [tooltipEvent]="'hover'" [showDelay]="1500">
                     <p-skeleton *ngIf="isLoading" height="1.15rem"></p-skeleton>
                     {{issue.descripcion}}
                 </td>
-                
+
                 <td>
                     <p-skeleton *ngIf="isLoading" height="1.15rem"></p-skeleton>
                     {{issue.fechaIncidencia | date: 'dd-MM-yyyy HH:mm' }}

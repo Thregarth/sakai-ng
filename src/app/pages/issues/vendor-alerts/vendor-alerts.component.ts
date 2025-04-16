@@ -29,7 +29,7 @@ interface ExportColumn {
   providers: [ProductService,ManagementIssuesService],
 })
 export class VendorAlertsComponent {
-  products!: GestionIncidenciaDto[];
+  products: GestionIncidenciaDto[] = Array.from({ length: 3 }, () => new GestionIncidenciaDto());
 
   selectedProducts!: GestionIncidenciaDto[];
 
